@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js学习</title>
+		<script type="text/javascript">
+			window.onload = function (){
+				var btn = document.getElementById("btn");
+				btn.onclick = function foo() {
+					
+					function foo(){
+						var arr = [];
+                        s = "123456";
+                        for(var i = 0;i < s.length;i++){
+                            arr.push(parseInt(s[i]));
+                            alert(parseInt(s[i]));
+                        }  
+                        return arr.reduce(function (x,y){
+                            return x*10+y;
+                        }); 
+					}
+					alert(foo());
+                }
+			}
+			
+		</script>
+	</head>
+	<body>
+		<button id="btn">run</button>
+	</body>
+</html>

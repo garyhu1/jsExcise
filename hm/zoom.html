@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>图片放大器</title>
+        <style>
+            *{
+        	    padding:0; 
+        	    margin:0;
+            }
+             #img1{
+        	    width:300px; 
+        	    height:200px;
+            }
+            #sp1{
+        	    width:60px;
+                height:40px;
+                position: absolute;
+                left:0; 
+                top:0;
+                background: rgba(62, 55, 58, 0.4);
+            }
+            #img2{
+        	    width:2250px; 
+        	    height:1500px; 
+        	    position: absolute;
+            }
+            div{
+        	    width:450px; 
+        	    height:300px; 
+        	    position: absolute; 
+        	    left:310px; 
+        	    top:0; 
+        	    overflow: hidden; 
+        	    border:2px solid black; 
+        	    display: none;
+            }
+        </style>
+        <script>
+            window.onload=function () {
+                var img1 = document.getElementById('img1');
+                var img2 = document.getElementById('img2');
+                var sp = document.getElementById('sp1');
+                var oBox = document.getElementById('box');
+                sp.onmouseover = function () {
+                    oBox.style.display='block';
+                };
+                sp.onmouseout = function () {
+                    oBox.style.display='none';
+                };
+                document.onmousemove = function (ev) {
+                    var x = (ev.clientX || event.clientX) - sp.offsetWidth/2;
+                    var y = (ev.clientY || event.clientY) - sp.offsetHeight/2;
+                    if ((ev.clientX || event.clientX) < sp.offsetWidth/2) {
+                        x = 0;
+                    }
+                    if ((ev.clientX || event.clientX)>img1.offsetWidth-sp.offsetWidth/2) {
+                        x = img1.offsetWidth-sp.offsetWidth;
+                    }
+                    if ((ev.clientY || event.clientY)<sp.offsetHeight/2) {
+                        y = 0;
+                    }if ((ev.clientY || event.clientY)>img1.offsetHeight-sp.offsetHeight/2) {
+                        y = img1.offsetHeight-sp.offsetHeight;
+                    }
+                    if ((ev.clientX || event.clientX)<300 && (ev.clientY || event.clientY)<200) {
+                        sp.style.left = x + 'px';
+                        sp.style.top = y + 'px';
+                        img2.style.left = -x * (img2.offsetWidth / img1.offsetWidth) + 'px';
+                        img2.style.top = -y * (img2.offsetHeight / img1.offsetHeight) + 'px';
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489083204637&di=244fe324db033fc826de48e90d2373f0&imgtype=0&src=http%3A%2F%2Fpic2015.5442.com%2F2016%2F0328%2F025%2F5.jpg%2521960.jpg
+            " alt="" id="img1">
+        <span id="sp1"></span>
+        <div id="box">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489083204637&di=244fe324db033fc826de48e90d2373f0&imgtype=0&src=http%3A%2F%2Fpic2015.5442.com%2F2016%2F0328%2F025%2F5.jpg%2521960.jpg
+                " alt="" id="img2">
+        </div>
+   </body>
+</html>
